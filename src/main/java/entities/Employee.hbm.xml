@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="entities.Employee" table="EMPLOYEES">
+		<!-- Primary key -->
+		<id name="id" type="int">
+			<column name="EMPLOYEE_ID" />
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="FIRST_NAME" />
+		</property>
+		<property name="salary" type="int">
+			<column name="SALARY" />
+		</property>
+		<property name="job_id" type="java.lang.String">
+			<column name="JOB_ID" />
+		</property>
+	</class>
+</hibernate-mapping>
