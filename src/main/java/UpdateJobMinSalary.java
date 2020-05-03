@@ -1,12 +1,10 @@
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
-import entities.Employee;
-
-public class ListEmployees {
+public class UpdateJobMinSalary {
 
 	public static void main(String[] args) throws Exception {
 		Configuration c = new Configuration();
@@ -15,12 +13,13 @@ public class ListEmployees {
 		SessionFactory sf = c.buildSessionFactory();
 		Session s = sf.openSession();
 
-		List<Employee> employees = s.createQuery("from Employee").list();
+		Transaction t = s.beginTransaction();
+		Query q = s.createQuery("update Job set minSal = minSal + minSal * 0.1 where minSal < 5000");
 
-		for (Employee e : employees) {
-			System.out.printf("%-10d - %-15s - %-10d - %s\n", e.getId(), e.getFirstName(), e.getSalary(),
-					e.getJob_id());
-		}
+		int cnt = q.executeUpdate();
+		System.out.println("No. of rows updated : " + cnt);
+		t.commit();
+
 		s.close();
 		sf.close();
 	}
