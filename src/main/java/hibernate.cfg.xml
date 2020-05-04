@@ -13,5 +13,6 @@
 		<property name="hibernate.hbm2ddl.auto">none</property>
 		<mapping resource="entities/Job.hbm.xml" />
 		<mapping resource="entities/Employee.hbm.xml" />
+		<mapping resource="entities/User.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
