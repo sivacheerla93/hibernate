@@ -1,27 +1,24 @@
 package onetoone;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class AddEmployee {
+public class ListMemberships {
 	public static void main(String[] args) throws Exception {
 		Configuration c = new Configuration();
 		c.configure("onetoone/hibernate.cfg.xml");
 
 		SessionFactory sf = c.buildSessionFactory();
 		Session s = sf.openSession();
-		Transaction t = s.beginTransaction();
-		Employee e = new Employee();
-		e.setName("Siva Cheerla");
 
-		Membership m = new Membership();
-		m.setType("R");
-		e.setMembership(m);
+		List<Membership> list = s.createQuery("from Membership").list();
 
-		s.save(e);
-		t.commit();
+		for (Membership m : list) {
+			System.out.printf("%-5s %-5s %-10s\n", m.getId(), m.getType(), m.getEmployee().getName());
+		}
 		s.close();
 		sf.close();
 	}
