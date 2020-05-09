@@ -4,7 +4,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-public class UpdateJobMinSalary {
+public class BulkUpdateJobMinSalary {
 
 	public static void main(String[] args) throws Exception {
 		Configuration c = new Configuration();
